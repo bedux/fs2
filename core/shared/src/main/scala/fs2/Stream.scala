@@ -1084,7 +1084,7 @@ final class Stream[+F[_], +O] private[fs2] (private val free: FreeC[F, O, Unit])
   /**
     * Alias for `evalMapChunk(o => f(o).as(o))`.
     */
-  def evalTapChunk[F2[x] >: F[x]: Functor: Applicative](f: O => F2[_]): Stream[F2, O] =
+  def evalTapChunk[F2[x] >: F[x]: Applicative](f: O => F2[_]): Stream[F2, O] =
     evalMapChunk(o => f(o).as(o))
 
   /**
